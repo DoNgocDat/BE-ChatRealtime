@@ -10,15 +10,20 @@ async function bootstrap() {
     .setTitle('Auth API')
     .setDescription('The authentication API description')
     .setVersion('1.0')
-    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' }, 'access-token') // Thêm Bearer Token
+    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' }, 'access-token')
     .addTag('auth')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  // Dòng này là bắt buộc khi deploy trên Render
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
 
-  // Tự động mở Swagger UI trong trình duyệt
-  openurl.open('http://localhost:3000/api');
+  if (process.env.NODE_ENV !== 'production') {
+    openurl.open(`http://localhost:${port}/api`);
+  }
+  
 }
 bootstrap();
