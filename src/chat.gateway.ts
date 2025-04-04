@@ -15,7 +15,7 @@ interface ConnectedUser {
 
 @WebSocketGateway({
   cors: {
-      origin: 'http://localhost:5173', // Địa chỉ của frontend
+      origin: 'https://smartchat-eslp.onrender.com', // Địa chỉ của frontend
   },
 })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {

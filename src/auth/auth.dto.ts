@@ -9,7 +9,7 @@ export class RegisterDto {
   password: string;
 
   @ApiProperty()
-  displayName: string;
+  displayname: string;
 
   @ApiProperty()
   email: string;
